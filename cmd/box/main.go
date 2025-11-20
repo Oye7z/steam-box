@@ -43,7 +43,7 @@ func main() {
 			multiLined = true
 		}
 	}
-	
+
 	updateOption := os.Getenv("UPDATE_OPTION") // options for update: GIST (Gist only), MARKDOWN (README only), GIST_AND_MARKDOWN (Gist and README)
 	markdownFile := os.Getenv("MARKDOWN_FILE") // the markdown filename (e.g. MYFILE.md)
 
@@ -63,7 +63,7 @@ func main() {
 
 	var (
 		filename string
-		lines []string
+		lines    []string
 	)
 
 	if steamOption == "ALLTIME" {
@@ -89,6 +89,7 @@ func main() {
 		f := gist.Files[github.GistFilename(filename)]
 
 		f.Content = github.String(strings.Join(lines, "\n"))
+		println(f)
 		gist.Files[github.GistFilename(filename)] = f
 
 		err = box.UpdateGist(ctx, gistID, gist)
